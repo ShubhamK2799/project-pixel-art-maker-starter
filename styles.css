@@ -1,17 +1,45 @@
-body {
-    text-align: center;
-}
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+@import url('https://fonts.googleapis.com/css?family=Passion+One');
 
+body {
+    margin:0;
+    text-align: center;
+    color:white;
+    background: linear-gradient(to right, purple 30% , blue);
+    font-family:'Passion One', cursive;
+    font-size: 3vw;
+}
 h1 {
-    font-family: Monoton;
-    font-size: 70px;
-    margin: 0.2em;
+    font-size: 7vw;
+    margin: 10% 0 0% 0;
+    font-family: 'Righteous', cursive;
+}
+label{
+    display: block;
+}
+input[type=number]{
+    padding:4%;
+    margin:0%;
+    width: 100%; 
+    border:none;
+    border-radius: 20px;/*Borders behave differently with % and pizels*/
+}
+#details{
+    display: inline-block;/*displaying inline block has one more advantage, the parent is aligned to the center with the minimum width*/
+}
+button{
+    font-family: 'Passion One', cursive;
+    font-size: 3vw;
+    margin: 5% 0 5% 0;
+    width:108%;
+    border-radius: 20px;
+    background:blue;
+    color:white;
 }
 
 h2 {
     margin: 1em 0 0.25em;
 }
-
 h2:first-of-type {
     margin-top: 0.5em;
 }
@@ -35,6 +63,3 @@ td {
     width: 20px;
 }
 
-input[type=number] {
-    width: 6em;
-}
