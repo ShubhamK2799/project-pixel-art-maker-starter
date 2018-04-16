@@ -15,16 +15,18 @@ let $table=$('#pixelCanvas');
 
 $('button').click(makeGrid);
 $('.delH').first().click( function (){ 
-        dim.h++;  
-        let insert = "<tr>";
-        for(var i=0; i<dim.w;i++)
-            insert+="<td></td>";
-        $table.append(insert+'</tr>');
-        console.log("Increase inputHeight");
+      dim.h++;  
+      let insert = "<tr>";
+      for(var i=0; i<dim.w;i++)
+          insert+="<td></td>";
+      $table.append(insert+'</tr>');
+      console.log("Increase inputHeight");
+      checkBox();
     });
 
 $('.delH').last().click( function (){ 
       $('tr').last().remove();
+      checkBox();
       console.log("Decrease inputHeight")
     });
 
@@ -32,6 +34,7 @@ $('.delW').first().click( function (){
       $('tr').each(function() {
         $(this).append("<td></td>");
       });
+      checkBox();
       console.log("Increase inputWidth");
     });
 
@@ -39,23 +42,15 @@ $('.delW').last().click( function (){
       $('tr').each(function(){
          $(this).children().last().remove();
       });
+      checkBox();
       console.log("Decrease inputWidth");
     });
-//either on('change')
-//or change()
 
-$('#checkBox').change( function(){
-    if(this.checked){
-      $('td').css('border-color','black');
-    }
-    else{  
-      $('td').css('border-color','white');
-    }
-    console.log("Grid should change");
-});
+//this.checked not $(this).checked
+//this is an element and $ is an object
+$('#checkBox').change( checkBox);
 
 $('#brush, #eraser').click(function(){
-   //even better than toggleClass since only one is to be selected
    $('#brush,#eraser').css('background-color','inherit');
    $('#brush,#eraser').css('color','inherit');
    $(this).css('background-color','white');
@@ -70,6 +65,49 @@ $('#brush, #eraser').click(function(){
   }
 });
   
+$('#homeButton').click( function(){
+   if(confirm("Are you sure? You will lose all your progress!")){
+      $('#grid').slideToggle();
+      $('#home').slideToggle();
+   } 
+});
+      
+$('aside').hover(function() {
+  $('content').fadeIn();
+}, function() {
+  $('content').fadeOut();
+});
+
+
+$(document).delegate('td','click',function(){
+    
+    if(type==1){
+      color = $('#colorPicker').val();
+      $(this).css('background',color);
+      console.log("cell color changed");
+    }
+    else{
+      $(this).css('background','white');
+    } 
+    console.log("cell selected",type);
+});
+
+
+
+
+function checkBox(){
+  //if this.checkBox then it would test on the active element from which the this function is called
+  //
+    if($('#checkBox').is(':checked')){
+      console.log("Black Border");
+      $('td').css('border-color','black');
+    }
+    else 
+      $('td').css('border-color','white');
+    console.log("border should change");
+}
+
+
 function makeGrid(){
     dim  = { 
         h:parseInt($('#inputHeight').val()),
@@ -99,31 +137,4 @@ function makeGrid(){
     console.log(dim);
     console.log("Grid Formed");
 }
-
-$('#homeButton').click( function(){
-   if(confirm("Are you sure? You will lose all your progress!")){
-      $('#grid').slideToggle();
-      $('#home').slideToggle();
-   } 
-});
-      
-$('aside').hover(function() {
-  $('content').fadeIn();
-}, function() {
-  $('content').fadeOut();
-});
-
-
-$(document).delegate('td','click',function(){
-    
-    if(type==1){
-      color = $('#colorPicker').val();
-      $(this).css('background',color);
-      console.log("cell color changed");
-    }
-    else{
-      $(this).css('background','white');
-    } 
-    console.log("cell selected",type);
-});
 
