@@ -4,7 +4,7 @@ let color={
    };
 let dim ={
        h:undefined,
-      w:undefined,
+       w:undefined,
     };
 let cell={
       h:20,
@@ -17,19 +17,24 @@ $('button').click(makeGrid);
 $('.delH').first().click( function (){ 
         dim.h++;  
         let insert = "<tr>";
-        for(var i=0; i<dim.h;i++)
+        for(var i=0; i<dim.w;i++)
             insert+="<td></td>";
         $table.append(insert+'</tr>');
         console.log("Increase inputHeight");
     });
+
 $('.delH').last().click( function (){ 
       $('tr').last().remove();
       console.log("Decrease inputHeight")
     });
+
 $('.delW').first().click( function (){
-      $('tr').append("<td></td>");
+      $('tr').each(function() {
+        $(this).append("<td></td>");
+      });
       console.log("Increase inputWidth");
     });
+
 $('.delW').last().click( function (){
       $('tr').each(function(){
          $(this).children().last().remove();
@@ -38,6 +43,7 @@ $('.delW').last().click( function (){
     });
 //either on('change')
 //or change()
+
 $('#checkBox').change( function(){
     if(this.checked){
       $('td').css('border-color','black');
@@ -94,13 +100,19 @@ function makeGrid(){
     console.log("Grid Formed");
 }
 
-$('#new').click( function(){
-   if(confirm("Are you sure? You will lost all your progress")){
+$('#homeButton').click( function(){
+   if(confirm("Are you sure? You will lose all your progress!")){
       $('#grid').slideToggle();
       $('#home').slideToggle();
    } 
-      
 });
+      
+$('aside').hover(function() {
+  $('content').fadeIn();
+}, function() {
+  $('content').fadeOut();
+});
+
 
 $(document).delegate('td','click',function(){
     

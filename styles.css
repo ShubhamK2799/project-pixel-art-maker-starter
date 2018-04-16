@@ -27,9 +27,10 @@ label{
 }
 input[type=number]{
     padding:4%;
-    margin:0%;
+    margin:2%;
     width: 100%; 
     border:none;
+    font-size: 2.5vw;
     font-family:'Passion One', cursive;
     border-radius: 20px;/*Borders behave differently with % and pizels*/
 }
@@ -47,6 +48,27 @@ button{
     background:blue;
     color:white;
 }
+
+aside , content{
+    top:1vw;
+    right:1vw;
+    position: absolute;
+    right:1vw;
+    font-size: 2vw;
+    padding: 0 1vw;
+}     
+
+content{
+    display: none;
+    top:4vw;
+    font-size: 1.5vw;
+}
+
+aside:hover,content{
+    background: white;
+    color:blue;
+}
+
 ul{
     list-style: none;
     display: inline-block;;
@@ -55,14 +77,17 @@ ul{
     font-size: 1.5vw;
     font-weight: bold;
 }
+
 li{
     padding:0.5vw;
     display: inline-block;
 }
+
 li:hover{
     background:white;
     color:blue;
 }
+
 #heading{
     text-align: left;
 }
@@ -72,8 +97,9 @@ li:hover{
 #grid{
     display: none;
 }
-#lhome{
+#thome{
     display: none;
+
 }
 nav{
     padding: 0vw 3vw 2vw 3vw;
