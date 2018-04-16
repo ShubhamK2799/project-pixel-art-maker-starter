@@ -22,28 +22,35 @@ $('.delH').first().click( function (){
       $table.append(insert+'</tr>');
       console.log("Increase inputHeight");
       checkBox();
+      adjustCellSize();
     });
 
 $('.delH').last().click( function (){ 
+      dim.h--;
       $('tr').last().remove();
       checkBox();
       console.log("Decrease inputHeight")
+      adjustCellSize();
     });
 
 $('.delW').first().click( function (){
+      dim.w++;
       $('tr').each(function() {
         $(this).append("<td></td>");
       });
       checkBox();
       console.log("Increase inputWidth");
+      adjustCellSize();
     });
 
 $('.delW').last().click( function (){
+      dim.w--;
       $('tr').each(function(){
          $(this).children().last().remove();
       });
       checkBox();
       console.log("Decrease inputWidth");
+      adjustCellSize();
     });
 
 //this.checked not $(this).checked
@@ -119,11 +126,25 @@ function makeGrid(){
         insert+='<td></td>';
         for(var i=0; i<dim.h; i++)  
            $table.append('<tr>'+ insert+'</tr>');    
+    adjustCellSize();      
+    $("#home").slideUp();
+    $("#grid").slideDown();
+    console.log(dim);
+    console.log("Grid Formed");
+}
+
+function adjustCellSize(){
+    if(dim.w>200)
+        dim.w=200;
+    if(dim.h>100)
+        dim.w=100;
+                  
     //Checking if the number of columns is  not exceeding or row is not exceeding
-    if(dim.w>58)
-        cell.h=20*58/dim.w;
-    if(dim.h>29)
-        cell.w=20*29/dim.h;
+    if(dim.w>50)
+        cell.h=20*50/dim.w;
+    if(dim.h>25)
+        cell.w=20*25/dim.h;
+    
     if(cell.h>cell.w){
         $('tr').css('height',cell.w+"px");
         $('td').css('width',cell.w+"px");
@@ -131,10 +152,6 @@ function makeGrid(){
     else{
         $('tr').css('height',cell.h+"px");
         $('td').css('width',cell.h+"px");
-    }  
-    $("#home").slideUp();
-    $("#grid").slideDown();
-    console.log(dim);
-    console.log("Grid Formed");
+    }
 }
 
