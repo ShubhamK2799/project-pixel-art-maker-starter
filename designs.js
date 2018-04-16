@@ -15,8 +15,11 @@ let $table=$('#pixelCanvas');
 
 $('button').click(makeGrid);
 $('.delH').first().click( function (){ 
-        var $row= $table.children().first().clone();
-        $table.append($row);
+        dim.h++;  
+        let insert = "<tr>";
+        for(var i=0; i<dim.h;i++)
+            insert+="<td></td>";
+        $table.append(insert+'</tr>');
         console.log("Increase inputHeight");
     });
 $('.delH').last().click( function (){ 
