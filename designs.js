@@ -11,29 +11,26 @@ let cell={
       w:20
     };
 let type =1;
+let $table=$('#pixelCanvas');
 
-$('button').click(function(){
-        inputDim();
-        makeGrid();
-      });
+$('button').click(makeGrid);
 $('.delH').first().click( function (){ 
-      dim.h++;
-      makeGrid();
-      console.log("Increase inputHeight")
+        var $row= $table.children().first().clone();
+        $table.append($row);
+        console.log("Increase inputHeight");
     });
 $('.delH').last().click( function (){ 
-      dim.h--;
-      makeGrid();
+      $('tr').last().remove();
       console.log("Decrease inputHeight")
     });
 $('.delW').first().click( function (){
-      dim.w++;
-      makeGrid();
+      $('tr').append("<td></td>");
       console.log("Increase inputWidth");
     });
 $('.delW').last().click( function (){
-      dim.w--;
-      makeGrid();
+      $('tr').each(function(){
+         $(this).children().last().remove();
+      });
       console.log("Decrease inputWidth");
     });
 //either on('change')
@@ -47,6 +44,7 @@ $('#checkBox').change( function(){
     }
     console.log("Grid should change");
 });
+
 $('#brush, #eraser').click(function(){
    //even better than toggleClass since only one is to be selected
    $('#brush,#eraser').css('background-color','inherit');
@@ -63,26 +61,20 @@ $('#brush, #eraser').click(function(){
   }
 });
   
-function inputDim(){
+function makeGrid(){
     dim  = { 
         h:parseInt($('#inputHeight').val()),
         w:parseInt($('#inputWeight').val())
     };
-    console.log("Dimensions Changed");
-}		
-
-function makeGrid(){
-    let table=$('#pixelCanvas');
-    table.text("");
+    $table.text("");
     let insert="";
     for(var i=0; i<dim.w;i++)
         insert+='<td></td>';
         for(var i=0; i<dim.h; i++)  
-           table.append('<tr>'+ insert+'</tr>');    
+           $table.append('<tr>'+ insert+'</tr>');    
     //Checking if the number of columns is  not exceeding or row is not exceeding
     if(dim.w>58)
         cell.h=20*58/dim.w;
-    
     if(dim.h>29)
         cell.w=20*29/dim.h;
     if(cell.h>cell.w){
