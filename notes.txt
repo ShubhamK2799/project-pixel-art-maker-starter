@@ -1,0 +1,79 @@
+/*
+	//because we need to insert every thing at once. Every time insert completed tag.
+	//parseInt() is a function not String.parseInt()
+	//submit function is used under form tag, it does not work after seelceting the button
+	/*
+	<script>
+	$( "p" ).click(function() {
+  	$( this ).slideUp();
+	});
+	</script>
+	<form action="javascript:alert( 'success!' );">
+  	<div>
+    <input type="text">
+    <input type="submit">
+  	</div>
+	</form>
+	<span></span>
+	<script>
+		$( "form" ).submit(function( event ) {
+		  if ( $( "input:first" ).val() === "correct" ) {
+		    $( "span" ).text( "Validated..." ).show();
+		    return;
+		  }
+		 
+		  $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+		  event.preventDefault();
+		});
+	</script>
+	*/
+	//$('input[type=submit]').submit(makeGrid()) is wrong;
+    //A sumbit function is called for the time it is submited later the console.loged value will disappear
+
+/*
+var a = parseInt("10") + "<br>";
+    var b = parseInt("10.00") + "<br>";
+    var c = parseInt("10.33") + "<br>";
+    var d = parseInt("34 45 66") + "<br>";
+    var e = parseInt("   60   ") + "<br>";
+    var f = parseInt("40 years") + "<br>";
+    var g = parseInt("He was 40") + "<br>";
+
+    var h = parseInt("10", 10)+ "<br>";
+    var i = parseInt("010")+ "<br>";
+    var j = parseInt("10", 8)+ "<br>";
+    var k = parseInt("0x10")+ "<br>";
+    var l = parseInt("10", 16)+ "<br>";
+    10
+10
+10
+34
+60
+40
+NaN
+
+10
+10
+8
+16
+16
+*/
+
+
+
+//default checked
+<fieldset>
+  <legend>Choose your interests</legend>
+  <div>
+    <input type="checkbox" id="coding" name="interest" value="coding" checked>
+    <label for="coding">Coding</label>
+  </div>
+  <div>
+    <input type="checkbox" id="music" name="interest" value="music">
+    <label for="music">Music</label>
+  </div>
+</fieldset>
+
+
+
+.onchange not onChange

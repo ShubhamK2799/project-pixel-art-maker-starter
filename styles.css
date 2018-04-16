@@ -1,19 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Righteous');
 @import url('https://fonts.googleapis.com/css?family=Passion+One');
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
 
 body {
     margin:0;
     text-align: center;
     color:white;
     background: linear-gradient(to right, purple 30% , blue);
-    font-family:'Passion One', cursive;
-    font-size: 3vw;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2vw;
+}
+
+h3{
+    display: inline-block;
+    margin:0;
+    padding:0;
 }
 h1 {
     font-size: 7vw;
     margin: 10% 0 0% 0;
     font-family: 'Righteous', cursive;
 }
+
 label{
     display: block;
 }
@@ -22,43 +30,73 @@ input[type=number]{
     margin:0%;
     width: 100%; 
     border:none;
+    font-family:'Passion One', cursive;
     border-radius: 20px;/*Borders behave differently with % and pizels*/
 }
-#details{
-    display: inline-block;/*displaying inline block has one more advantage, the parent is aligned to the center with the minimum width*/
+input[type=color]{
+    width: 2vw;
+    height: 1.5vw;
+    padding: 0;
 }
-button{
-    font-family: 'Passion One', cursive;
-    font-size: 3vw;
+button{  
+    font-size: 2vw;
     margin: 5% 0 5% 0;
     width:108%;
-    border-radius: 20px;
+    padding: 1vw 0 ;
+    border-radius: 2.5vw;
     background:blue;
     color:white;
 }
-
-h2 {
-    margin: 1em 0 0.25em;
+ul{
+    list-style: none;
+    display: inline-block;;
+    text-align: right;
+    width: 80%;
+    font-size: 1.5vw;
+    font-weight: bold;
 }
-h2:first-of-type {
-    margin-top: 0.5em;
+li{
+    padding:0.5vw;
+    display: inline-block;
 }
-
+li:hover{
+    background:white;
+    color:blue;
+}
+#heading{
+    text-align: left;
+}
+#details{
+    display: inline-block;/*Flec and block cannot exist at one space;displaying inline block has one more advantage, the parent is aligned to the center with the minimum width*/
+}
+#grid{
+    display: none;
+}
+#lhome{
+    display: none;
+}
+nav{
+    padding: 0vw 3vw 2vw 3vw;
+    text-align: left;
+}
+span{
+    padding:0.6vw;
+    font-size: small;
+    border: thin solid white; 
+}
 table,
 tr,
 td {
-    border: 1px solid black;
+     border: 1px solid white;
 }
-
 table {
     border-collapse: collapse;
     margin: 0 auto;
+    background-color:white;
 }
-
 tr {
     height: 20px;
 }
-
 td {
     width: 20px;
 }

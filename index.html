@@ -4,22 +4,41 @@
     <title>Pixel Art Maker!</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-	<section id="menu">
+	<section id="home">
 	    <h1>Lab: Pixel Art Maker</h1>
 	    <div id="details">
 		    	<label>Enter Grid Height</label>
-		    	<input type="number" id="inputHeight" name="height" min="1" value="1" >    
+		    	<input type="number" id="inputHeight" name="height" min="1" max="60" value="1" >    
 		        <label>Enter Grid Width </label>
-				<input type="number" id="inputWeight" name="width" min="1" value="1">   
+				<input type="number" id="inputWeight" name="width" min="1" max="150" value="1">   
 	            <button>Create Grid</button>	
 	    </div>
-	</section>    
-	<section id="grid">
-		<table id="pixelCanvas">
-    	</table>
+    </section>
+    <section id="grid">
+        <nav>
+            <h3>Canvas Grid</h3>
+            <ul>
+                <li id="brush"><i class="fa fa-paint-brush"></i></li>
+                <li id="eraser"><i class="fa fa-eraser"></i></li>
+                <li><input type="color" id="colorPicker" name="colorPicker"></li>                
+                |
+                <li class="delH">H+</li>
+                <li class="delH">H-</li>
+                |
+                <li class="delW">W+</li>
+                <li class="delW">W-</li>
+                |
+                <li><input type="checkbox" id="checkBox" name="sheetColor">Show Grid</li>     
+                | <li id="new">New</li>
+            </ul>    
+        </nav>
+        <table id="pixelCanvas">
+	    </table>
     </section>
     <script src="designs.js"></script>
 </body>
 </html>
+<!--Spaces are comming between the span blocks because of the spaces between the tags here-->   
