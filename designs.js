@@ -1,110 +1,122 @@
-let color;
-let dim;
+let color={
+     fill:undefined,
+     border:undefined
+   };
+let dim ={
+       h:undefined,
+      w:undefined,
+    };
+let cell={
+      h:20,
+      w:20
+    };
+let type =1;
 
-	$('button').on("click", function (){
-		console.log("Button Clicked");
-		// color = $('#colorPicker').val();
-		// dim  = { 
-		// 	h:parseInt($('#inputHeight').val()),
-		// 	w:parseInt($('#inputWeight').val())
-		// };
-  //   	console.log("Working");
-		// let table=$('#pixelCanvas');
-		// table.text("");
-		// let insert="";
-		// for(var i=0; i<dim.w;i++)
-		// 	insert+='<td></td>';
- 	// 	for(var i=0; i<dim.h; i++)	
-		//  	table.append('<tr>'+ insert+'</tr>');		
-		// $("#menu").fadeOut();
-	});
-		
-	//$('button').click(function() {alert("you clicked");$("#menu").fadeOut();});		
-
-/*
-$("#submitBtn").on("click keyup", function(e) {
-    console.log("Working");
-    // $pixelCanvas.css("display","block");
-    $modalNav.toggleClass("drop-down");
-    $modalToolbar.toggleClass("slide-up");
-    $pixelCanvas.toggleClass("slide-right");
-    // $(".modal-toolbar").css("display","flex");
-    let code = e.keyCode || e.which;
-    gridHeight = parseInt($heightInput.val());
-    gridWidth = parseInt($widthInput.val());
-
-    // don't submit on tab or space keypress
-    if (code === 32 || code === 9) {
-      return false;
-    } else if (
-      gridHeight <= maxHeight &&
-      gridHeight > 0 &&
-      (gridWidth <= maxWidth && gridWidth > 0)
-    ) {
-      e.preventDefault();
-      makeGrid(gridHeight, gridWidth);
-
-      $interface.css("display", "none");
-      $mainTitle.css("display", "none");
+$('button').click(function(){
+        inputDim();
+        makeGrid();
+      });
+$('.delH').first().click( function (){ 
+      dim.h++;
+      makeGrid();
+      console.log("Increase inputHeight")
+    });
+$('.delH').last().click( function (){ 
+      dim.h--;
+      makeGrid();
+      console.log("Decrease inputHeight")
+    });
+$('.delW').first().click( function (){
+      dim.w++;
+      makeGrid();
+      console.log("Increase inputWidth");
+    });
+$('.delW').last().click( function (){
+      dim.w--;
+      makeGrid();
+      console.log("Decrease inputWidth");
+    });
+//either on('change')
+//or change()
+$('#checkBox').change( function(){
+    if(this.checked){
+      $('td').css('border-color','black');
     }
-  });
+    else{  
+      $('td').css('border-color','white');
+    }
+    console.log("Grid should change");
+});
+$('#brush, #eraser').click(function(){
+   //even better than toggleClass since only one is to be selected
+   $('#brush,#eraser').css('background-color','inherit');
+   $('#brush,#eraser').css('color','inherit');
+   $(this).css('background-color','white');
+   $(this).css('color','blue');
+   //console.log($(this),$('#brush'));Why false?
+   if(this.id==='brush'){
+    console.log("brush selected") ;type=1;
+  }
+   else {
+    type=2; 
+    console.log("eraser selected");
+  }
+});
+  
+function inputDim(){
+    dim  = { 
+        h:parseInt($('#inputHeight').val()),
+        w:parseInt($('#inputWeight').val())
+    };
+    console.log("Dimensions Changed");
+}		
 
-	//because we need to insert every thing at once. Every time insert completed tag.
-	//parseInt() is a function not String.parseInt()
-	//submit function is used under form tag, it does not work after seelceting the button
-	/*
-	<script>
-	$( "p" ).click(function() {
-  	$( this ).slideUp();
-	});
-	</script>
-	<form action="javascript:alert( 'success!' );">
-  	<div>
-    <input type="text">
-    <input type="submit">
-  	</div>
-	</form>
-	<span></span>
-	<script>
-		$( "form" ).submit(function( event ) {
-		  if ( $( "input:first" ).val() === "correct" ) {
-		    $( "span" ).text( "Validated..." ).show();
-		    return;
-		  }
-		 
-		  $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
-		  event.preventDefault();
-		});
-	</script>
-	*/
-	//$('input[type=submit]').submit(makeGrid()) is wrong;
-    //A sumbit function is called for the time it is submited later the console.loged value will disappear
+function makeGrid(){
+    let table=$('#pixelCanvas');
+    table.text("");
+    let insert="";
+    for(var i=0; i<dim.w;i++)
+        insert+='<td></td>';
+        for(var i=0; i<dim.h; i++)  
+           table.append('<tr>'+ insert+'</tr>');    
+    //Checking if the number of columns is  not exceeding or row is not exceeding
+    if(dim.w>58)
+        cell.h=20*58/dim.w;
+    
+    if(dim.h>29)
+        cell.w=20*29/dim.h;
+    if(cell.h>cell.w){
+        $('tr').css('height',cell.w+"px");
+        $('td').css('width',cell.w+"px");
+    }
+    else{
+        $('tr').css('height',cell.h+"px");
+        $('td').css('width',cell.h+"px");
+    }  
+    $("#home").slideUp();
+    $("#grid").slideDown();
+    console.log(dim);
+    console.log("Grid Formed");
+}
 
-/*
-var a = parseInt("10") + "<br>";
-    var b = parseInt("10.00") + "<br>";
-    var c = parseInt("10.33") + "<br>";
-    var d = parseInt("34 45 66") + "<br>";
-    var e = parseInt("   60   ") + "<br>";
-    var f = parseInt("40 years") + "<br>";
-    var g = parseInt("He was 40") + "<br>";
+$('#new').click( function(){
+   if(confirm("Are you sure? You will lost all your progress")){
+      $('#grid').slideToggle();
+      $('#home').slideToggle();
+   } 
+      
+});
 
-    var h = parseInt("10", 10)+ "<br>";
-    var i = parseInt("010")+ "<br>";
-    var j = parseInt("10", 8)+ "<br>";
-    var k = parseInt("0x10")+ "<br>";
-    var l = parseInt("10", 16)+ "<br>";
-    10
-10
-10
-34
-60
-40
-NaN
+$(document).delegate('td','click',function(){
+    
+    if(type==1){
+      color = $('#colorPicker').val();
+      $(this).css('background',color);
+      console.log("cell color changed");
+    }
+    else{
+      $(this).css('background','white');
+    } 
+    console.log("cell selected",type);
+});
 
-10
-10
-8
-16
-16
-*/
