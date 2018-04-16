@@ -1,5 +1,4 @@
 # Pixel Art Maker Project
-```https://codepen.io/kumarShubham/full/XEvoMp/```
 
 ## Table of Contents
 
