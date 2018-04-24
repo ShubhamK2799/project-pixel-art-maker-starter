@@ -1,3 +1,21 @@
+//caching all jQuery objects 
+$button=$('button');
+$delH1=$('.delH').first();
+$delH2=$('.delH').last();
+$delW1=$('.delW').first();
+$delW2=$('.delW').last();
+//$tr=$('tr'); The number of the tr elements are changing and so caching will not work
+//$td=$('td'); The number of the td elements are changing and so caching will not work
+$checkBox=$('#checkBox');
+$brushAndEraser=$('#brush, #eraser');
+$homeButton=$('#homeButton'); 
+$aside=$('aside');
+$content=$('content');
+$home=$('#home');
+$grid=$('#grid');
+$colorPicker=$('#colorPicker');
+
+//adding js variables
 let color={
      fill:undefined,
      border:undefined
@@ -13,8 +31,10 @@ let cell={
 let type =1;
 let $table=$('#pixelCanvas');
 
-$('button').click(makeGrid);
-$('.delH').first().click( function (){ 
+
+//adding jQueryFunctions
+$button.click(makeGrid);
+$delH1.click( function (){ 
       dim.h++;  
       let insert = "<tr>";
       for(var i=0; i<dim.w;i++)
@@ -25,7 +45,7 @@ $('.delH').first().click( function (){
       adjustCellSize();
     });
 
-$('.delH').last().click( function (){ 
+$delH2.click( function (){ 
       dim.h--;
       $('tr').last().remove();
       checkBox();
@@ -33,7 +53,7 @@ $('.delH').last().click( function (){
       adjustCellSize();
     });
 
-$('.delW').first().click( function (){
+$delW1.click( function (){
       dim.w++;
       $('tr').each(function() {
         $(this).append("<td></td>");
@@ -43,7 +63,7 @@ $('.delW').first().click( function (){
       adjustCellSize();
     });
 
-$('.delW').last().click( function (){
+$delW2.click( function (){
       dim.w--;
       $('tr').each(function(){
          $(this).children().last().remove();
@@ -55,11 +75,10 @@ $('.delW').last().click( function (){
 
 //this.checked not $(this).checked
 //this is an element and $ is an object
-$('#checkBox').change( checkBox);
-
-$('#brush, #eraser').click(function(){
-   $('#brush,#eraser').css('background-color','inherit');
-   $('#brush,#eraser').css('color','inherit');
+$checkBox.change( checkBox);
+$brushAndEraser.click(function(){
+   $brushAndEraser.css('background-color','inherit');
+   $brushAndEraser.css('color','inherit');
    $(this).css('background-color','white');
    $(this).css('color','blue');
    //console.log($(this),$('#brush'));Why false?
@@ -72,24 +91,23 @@ $('#brush, #eraser').click(function(){
   }
 });
   
-$('#homeButton').click( function(){
+$homeButton.click( function(){
    if(confirm("Are you sure? You will lose all your progress!")){
-      $('#grid').slideToggle();
-      $('#home').slideToggle();
+      $grid.slideToggle();
+      $home.slideToggle();
    } 
 });
       
-$('aside').hover(function() {
-  $('content').fadeIn();
+$aside.hover(function() {
+  $content.fadeIn();
 }, function() {
-  $('content').fadeOut();
+  $content.fadeOut();
 });
-
 
 $(document).delegate('td','click',function(){
     
     if(type==1){
-      color = $('#colorPicker').val();
+      color = $colorPicker.val();
       $(this).css('background',color);
       console.log("cell color changed");
     }
@@ -99,13 +117,11 @@ $(document).delegate('td','click',function(){
     console.log("cell selected",type);
 });
 
-
-
-
+//jS functions
 function checkBox(){
   //if this.checkBox then it would test on the active element from which the this function is called
   //
-    if($('#checkBox').is(':checked')){
+    if($checkBox.is(':checked')){
       console.log("Black Border");
       $('td').css('border-color','black');
     }
@@ -127,8 +143,8 @@ function makeGrid(){
         for(var i=0; i<dim.h; i++)  
            $table.append('<tr>'+ insert+'</tr>');    
     adjustCellSize();      
-    $("#home").slideUp();
-    $("#grid").slideDown();
+    $home.slideUp();
+    $grid.slideDown();
     console.log(dim);
     console.log("Grid Formed");
 }
